@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<link href="novus/src/d3.css" rel="stylesheet" type="text/css">
+
+<style>
+
+body {
+  overflow-y:scroll;
+}
+
+text {
+  font: 12px sans-serif;
+}
+
+#chart1 {
+  height: 500px;
+  margin: 10px;
+  min-width: 300px;
+  min-height: 100px;
+/*
+  Minimum height and width is a good idea to prevent negative SVG dimensions...
+  For example width should be =< margin.left + margin.right + 1,
+  of course 1 pixel for the entire chart would not be very useful, BUT should not have errors
+*/
+}
+
+</style>
+<body>
+
+  <div id="chart1">
+    <svg></svg>
+  </div>
+
+<script src="novus/lib/d3.v2.js"></script>
+<script src="novus/nv.d3.js"></script>
+<script src="novus/src/tooltip.js"></script>
+<script src="novus/src/models/legend.js"></script>
+<script src="novus/src/models/axis.js"></script>
+<script src="novus/examples/stream_layers.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+<script src="linePlusMultiBarChart.js"></script>
+<script src="health.js"></script>
+
+
