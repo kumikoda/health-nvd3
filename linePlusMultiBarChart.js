@@ -1,6 +1,6 @@
 
 nv.models.linePlusMultiBarChart = function() {
-  var margin = {top: 30, right: 80, bottom: 50, left: 80},
+  var margin = {top: 30, right: 80, bottom: 20, left: 80},
       width = null,
       height = null,
       getX = function(d) { return d.x },
@@ -19,14 +19,17 @@ nv.models.linePlusMultiBarChart = function() {
       bars = nv.models.multiBar().stacked(false),
       x = d3.scale.linear(), // needs to be both line and historicalBar x Axis
       y1 = bars.yScale(),
-      y2 = lines.yScale(),
+      y2 = lines.yScale().range([0,100]),
       xAxis = nv.models.axis().scale(x).orient('bottom').tickPadding(5),
       yAxis1 = nv.models.axis().scale(y1).orient('left'),
       yAxis2 = nv.models.axis().scale(y2).orient('right'),
       legend = nv.models.legend().height(30),
 	  controls = nv.models.legend().height(30),
+	  controls2 = nv.models.legend().height(30),
       dispatch = d3.dispatch('tooltipShow', 'tooltipHide');
 
+	  
+	  
   var showTooltip = function(e, offsetElement) {
     var left = e.pos[0] + ( offsetElement.offsetLeft || 0 ),
         top = e.pos[1] + ( offsetElement.offsetTop || 0),
@@ -76,6 +79,7 @@ nv.models.linePlusMultiBarChart = function() {
             });
 
       x   .domain(d3.extent(d3.merge(series1.concat(series2)), function(d) { return d.x } ))
+	  //x   .domain([2008, 2010])
           .range([0, availableWidth]);
 
 
@@ -111,8 +115,8 @@ nv.models.linePlusMultiBarChart = function() {
 
 
       if (showLegend) {
-        legend.width(availableWidth);
-
+	  
+        legend.width(availableWidth*0.8);
         g.select('.legendWrap')
             .datum(data.map(function(series) {
 			  // Instead of dynamically setting the series, we should just add another field that just indicates left or right
@@ -123,15 +127,18 @@ nv.models.linePlusMultiBarChart = function() {
               return series;
             }))
           .call(legend);
-
+		
         if ( margin.top != legend.height()) {
           margin.top = legend.height();
           availableHeight = (height || parseInt(container.style('height')) || 400)
                              - margin.top - margin.bottom;
+		  lines.height(availableHeight);
+		  bars.height(availableHeight);
         }
+		
 
         g.select('.legendWrap')
-          .attr('transform', 'translate(0,' + (-margin.top) +')');
+          .attr('transform', 'translate('+ availableWidth*0.2+',' + (-margin.top) +')');
       }
 
 	  if (showControls) {
@@ -148,7 +155,7 @@ nv.models.linePlusMultiBarChart = function() {
       var linesWrap = g.select('.linesWrap')
           .datum(dataLines.length ? dataLines : [{values:[]}])
 
-
+	  //lines.yScale().domain([0,100]);
       d3.transition(barsWrap).call(bars);
       d3.transition(linesWrap).call(lines);
 

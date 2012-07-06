@@ -5,7 +5,7 @@ nv.models.legend = function() {
       height = 20,
       getKey = function(d) { return d.key },
       color = d3.scale.category20().range(),
-      align = true;
+      align = true
 
   var dispatch = d3.dispatch('legendClick', 'legendDblclick', 'legendMouseover', 'legendMouseout'); //TODO: theres are really element or series events, there are currently no 'LEGEND' events (as in entire legend)... decide if they are needed
 
@@ -176,6 +176,7 @@ nv.models.legend = function() {
     align = _;
     return chart;
   };
+  
 
   return chart;
 }

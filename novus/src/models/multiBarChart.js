@@ -86,10 +86,12 @@ nv.models.multiBarChart = function() {
             .datum(data)
             .call(legend);
 
+
         if ( margin.top != legend.height()) {
           margin.top = legend.height();
           availableHeight = (height || parseInt(container.style('height')) || 400)
                              - margin.top - margin.bottom;
+		  
         }
 
         g.select('.legendWrap')
