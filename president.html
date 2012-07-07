@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<link href="lib/novus/src/d3.css" rel="stylesheet" type="text/css">
+<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+<style>
+
+body {
+  overflow-y:scroll;
+}
+
+text {
+  font: 12px sans-serif;
+}
+
+svg {
+  display: block;
+}
+
+#chart1 svg{
+  height: 500px;
+  min-width: 100px;
+  min-height: 100px;
+/*
+  margin: 10px;
+  Minimum height and width is a good idea to prevent negative SVG dimensions...
+  For example width should be =< margin.left + margin.right + 1,
+  of course 1 pixel for the entire chart would not be very useful, BUT should not have errors
+*/
+}
+
+#footnote{
+	float:right;
+}
+
+</style>
+<body>
+
+  <div id="chart1">
+	<h3>Health Care Costs?</h3>
+    <svg></svg>
+    <p id='footnote'> * Normalized to historical average </p>
+  </div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="lib/novus/lib/d3.v2.js"></script>
+<script src="lib/novus/nv.d3.js"></script>
+<!-- including all the components so I don't have to minify every time I test in development -->
+<script src="lib/novus/src/tooltip.js"></script>
+<script src="lib/novus/src/models/axis.js"></script>
+<script src="custom-models/discreteBar.js"></script>
+<script src="custom-models/discreteBarChart.js"></script>
+
+
+<script>
+	historicalBarChart = [ 
+	  {
+	    key: "Cumulative Return",
+	    values: [{"label":1961,"value":0.164413780999999,"color":"#273347","title":"John F. Kennedy"},
+		{"label":1962,"value":2.58309392,"color":"#273347","title":"John F. Kennedy"},
+		{"label":1963,"value":1.533445375,"color":"#273347","title":"John F. Kennedy"},
+		{"label":1964,"value":3.780554383,"color":"#273347","title":"Lyndon B. Johnson"},
+		{"label":1965,"value":1.847530676,"color":"#273347","title":"Lyndon B. Johnson"},
+		{"label":1966,"value":1.225141776,"color":"#273347","title":"Lyndon B. Johnson"},
+		{"label":1967,"value":3.850583868,"color":"#273347","title":"Lyndon B. Johnson"},
+		{"label":1968,"value":3.295313156,"color":"#273347","title":"Lyndon B. Johnson"},
+		{"label":1969,"value":2.089817245,"color":"#851907","title":"Richard Nixon"},
+		{"label":1970,"value":1.1677282,"color":"#851907","title":"Richard Nixon"},
+		{"label":1971,"value":0.912867689,"color":"#851907","title":"Richard Nixon"},
+		{"label":1972,"value":3.131778128,"color":"#851907","title":"Richard Nixon"},
+		{"label":1973,"value":-0.626236852,"color":"#851907","title":"Richard Nixon"},
+		{"label":1974,"value":-2.694192262,"color":"#851907","title":"Richard Nixon"},
+		{"label":1975,"value":-0.731821826,"color":"#851907","title":"Gerald Ford"},
+		{"label":1976,"value":3.311777074,"color":"#851907","title":"Gerald Ford"},
+		{"label":1977,"value":1.684571809,"color":"#273347","title":"Jimmy Carter"},
+		{"label":1978,"value":-0.683781436,"color":"#273347","title":"Jimmy Carter"},
+		{"label":1979,"value":-3.400872479,"color":"#273347","title":"Jimmy Carter"},
+		{"label":1980,"value":-3.565549353,"color":"#273347","title":"Jimmy Carter"},
+		{"label":1981,"value":-0.079699585,"color":"#851907","title":"Ronald Reagan"},
+		{"label":1982,"value":0.924717291,"color":"#851907","title":"Ronald Reagan"},
+		{"label":1983,"value":1.667388622,"color":"#851907","title":"Ronald Reagan"},
+		{"label":1984,"value":0.591585669,"color":"#851907","title":"Ronald Reagan"},
+		{"label":1985,"value":0.4337954,"color":"#851907","title":"Ronald Reagan"},
+		{"label":1986,"value":-0.071619525,"color":"#851907","title":"Ronald Reagan"},
+		{"label":1987,"value":-0.05535848,"color":"#851907","title":"Ronald Reagan"},
+		{"label":1988,"value":2.26972412,"color":"#851907","title":"Ronald Reagan"},
+		{"label":1989,"value":0.99805314,"color":"#851907","title":"George H. W. Bush"},
+		{"label":1990,"value":0.838942364999999,"color":"#851907","title":"George H. W. Bush"},
+		{"label":1991,"value":-0.693128552,"color":"#851907","title":"George H. W. Bush"},
+		{"label":1992,"value":-0.149012623,"color":"#851907","title":"George H. W. Bush"},
+		{"label":1993,"value":-1.225660382,"color":"#273347","title":"Bill Clinton"},
+		{"label":1994,"value":-2.374492236,"color":"#273347","title":"Bill Clinton"},
+		{"label":1995,"value":-2.519913902,"color":"#273347","title":"Bill Clinton"},
+		{"label":1996,"value":-3.000713935,"color":"#273347","title":"Bill Clinton"},
+		{"label":1997,"value":-1.941463115,"color":"#273347","title":"Bill Clinton"},
+		{"label":1998,"value":-1.145962282,"color":"#273347","title":"Bill Clinton"},
+		{"label":1999,"value":-1.025038831,"color":"#273347","title":"Bill Clinton"},
+		{"label":2000,"value":-1.681320936,"color":"#273347","title":"Bill Clinton"},
+		{"label":2001,"value":0.30723489,"color":"#851907","title":"George W. Bush"},
+		{"label":2002,"value":2.616727349,"color":"#851907","title":"George W. Bush"},
+		{"label":2003,"value":0.864598863,"color":"#851907","title":"George W. Bush"},
+		{"label":2004,"value":-0.767323018,"color":"#851907","title":"George W. Bush"},
+		{"label":2005,"value":-1.896785908,"color":"#851907","title":"George W. Bush"},
+		{"label":2006,"value":-1.950198354,"color":"#851907","title":"George W. Bush"},
+		{"label":2007,"value":-1.912034204,"color":"#851907","title":"George W. Bush"},
+		{"label":2008,"value":-4.269129133,"color":"#851907","title":"George W. Bush"},
+		{"label":2009,"value":-0.883689363,"color":"#273347","title":"Barack Obama"},
+		{"label":2010,"value":-2.746386234,"color":"#273347","title":"Barack Obama"}]
+	  }
+	];
+
+
+
+
+	nv.addGraph(function() {  
+	  var chart = nv.models.discreteBarChart()
+	      .x(function(d) { return d.label })
+	      .y(function(d) { return d.value })
+	      .tooltips(true)
+	      .showValues(false)
+		  .color(['red','blue']);
+
+		  chart.yAxis
+				.axisLabel(' Health Total Cost (% Change) * ' )
+
+		  chart.xAxis
+				.tickFormat(function(d) { 
+					years = [1961, 1964, 1969, 1975, 1977, 1981, 1989, 1993, 2001, 2009];
+					if (years.indexOf(d)>0) {
+						return d;
+					}
+					else {
+						return "";
+					}
+				});
+
+
+
+
+	  d3.select('#chart1 svg')
+	      .datum(historicalBarChart)
+	    .transition().duration(500)
+	      .call(chart);
+
+	  nv.utils.windowResize(chart.update);
+
+	  return chart;
+	});
+	
+</script>
+
+
