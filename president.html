@@ -39,7 +39,6 @@ svg {
 <body>
 
   <div id="chart1">
-	<h3>Health Care Costs?</h3>
     <svg></svg>
     <p id='footnote'> * Normalized to historical average </p>
   </div>
@@ -110,16 +109,15 @@ svg {
 	  }
 	];
 
-
-
-
 	nv.addGraph(function() {  
 	  var chart = nv.models.discreteBarChart()
 	      .x(function(d) { return d.label })
 	      .y(function(d) { return d.value })
 	      .tooltips(true)
 	      .showValues(false)
-		  .color(['red','blue']);
+		  .color(['red','blue'])
+		  .staggerLabels(true);
+		  
 
 		  chart.yAxis
 				.axisLabel(' Health Total Cost (% Change) * ' )
@@ -137,16 +135,20 @@ svg {
 
 
 
-
 	  d3.select('#chart1 svg')
 	      .datum(historicalBarChart)
 	    .transition().duration(500)
 	      .call(chart);
 
+	   
+
+
 	  nv.utils.windowResize(chart.update);
 
 	  return chart;
 	});
+	
+	
 	
 </script>
 

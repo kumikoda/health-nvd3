@@ -105,7 +105,8 @@ nv.models.discreteBarChart = function() {
       if (staggerLabels)
         xTicks
             .selectAll('text')
-            .attr('transform', function(d,i,j) { return 'translate(0,' + (j % 2 == 0 ? '0' : '12') + ')' })
+            //.attr('transform', function(d,i,j) { return 'translate(0,' + (j % 2 == 0 ? '0' : '12') + ')' })
+			// no staggering
 
       if (rotateLabels)
         xTicks
