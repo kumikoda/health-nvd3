@@ -1,4 +1,5 @@
 health-nvd3
 ===========
 
-health data visualized using nvd3
+To view site, navigate to index.html!
+
