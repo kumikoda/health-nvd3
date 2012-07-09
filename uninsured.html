@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<link href="lib/novus/src/d3.css" rel="stylesheet" type="text/css">
+<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+<style>
+
+body {
+  overflow-y:scroll;
+}
+
+text {
+  font: 12px sans-serif;
+}
+
+svg {
+  display: block;
+}
+
+#chart1 svg{
+  height: 500px;
+  min-width: 100px;
+  min-height: 100px;
+/*
+  margin: 10px;
+  Minimum height and width is a good idea to prevent negative SVG dimensions...
+  For example width should be =< margin.left + margin.right + 1,
+  of course 1 pixel for the entire chart would not be very useful, BUT should not have errors
+*/
+}
+
+#footnote{
+	float:right;
+}
+
+</style>
+<body>
+
+  <div id="chart1">
+	<h3>Number of People Uninsured from 1987 to 2010 with Projections to 2021</h3>
+    <svg></svg>
+  </div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="lib/novus/lib/d3.v2.js"></script>
+<script src="lib/novus/nv.d3.js"></script>
+<!-- including all the components so I don't have to minify every time I test in development -->
+<script src="lib/novus/src/tooltip.js"></script>
+<script src="lib/novus/src/models/axis.js"></script>
+<script src="custom-models/discreteBar.js"></script>
+<script src="custom-models/discreteBarChart.js"></script>
+
+
+<script>
+	historicalBarChart = [ 
+	  {
+	    key: "people",
+	    values: [{"label":1987,"value":27.3, 'color':'#28D9BF','title':'historical'},
+		{"label":1988,"value":28.7, 'color':'#28D9BF','title':'historical'},
+		{"label":1989,"value":30.5, 'color':'#28D9BF','title':'historical'},
+		{"label":1990,"value":31.2, 'color':'#28D9BF','title':'historical'},
+		{"label":1991,"value":32.2, 'color':'#28D9BF','title':'historical'},
+		{"label":1992,"value":34.1, 'color':'#28D9BF','title':'historical'},
+		{"label":1993,"value":35, 'color':'#28D9BF','title':'historical'},
+		{"label":1994,"value":34.4, 'color':'#28D9BF','title':'historical'},
+		{"label":1995,"value":34.9, 'color':'#28D9BF','title':'historical'},
+		{"label":1996,"value":35.4, 'color':'#28D9BF','title':'historical'},
+		{"label":1997,"value":36.7, 'color':'#28D9BF','title':'historical'},
+		{"label":1998,"value":37.1, 'color':'#28D9BF','title':'historical'},
+		{"label":1999,"value":35.4, 'color':'#28D9BF','title':'historical'},
+		{"label":2000,"value":34.6, 'color':'#28D9BF','title':'historical'},
+		{"label":2001,"value":36, 'color':'#28D9BF','title':'historical'},
+		{"label":2002,"value":38, 'color':'#28D9BF','title':'historical'},
+		{"label":2003,"value":39.3, 'color':'#28D9BF','title':'historical'},
+		{"label":2004,"value":39.6, 'color':'#28D9BF','title':'historical'},
+		{"label":2005,"value":40.9, 'color':'#28D9BF','title':'historical'},
+		{"label":2006,"value":43, 'color':'#28D9BF','title':'historical'},
+		{"label":2007,"value":41.6, 'color':'#28D9BF','title':'historical'},
+		{"label":2008,"value":42.7, 'color':'#28D9BF','title':'historical'},
+		{"label":2009,"value":46.5, 'color':'#28D9BF','title':'historical'},
+		{"label":2010,"value":47.2, 'color':'#28D9BF','title':'historical'},
+		{"label":2011,"value":47.4, 'color':'grey','title':'projected'},
+		{"label":2012,"value":47.8, 'color':'grey','title':'projected'},
+		{"label":2013,"value":48.6, 'color':'grey','title':'projected'},
+		{"label":2014,"value":27.8, 'color':'grey','title':'projected'},
+		{"label":2015,"value":25.6, 'color':'grey','title':'projected'},
+		{"label":2016,"value":23.8, 'color':'grey','title':'projected'},
+		{"label":2017,"value":24.0, 'color':'grey','title':'projected'},
+		{"label":2018,"value":24.0, 'color':'grey','title':'projected'},
+		{"label":2019,"value":23.9, 'color':'grey','title':'projected'},
+		{"label":2020,"value":23.6, 'color':'grey','title':'projected'},
+		{"label":2021,"value":23.1, 'color':'grey','title':'projected'},
+		]	
+	  }
+	];
+
+	nv.addGraph(function() {  
+	  var chart = nv.models.discreteBarChart()
+	      .x(function(d) { return d.label })
+	      .y(function(d) { return d.value })
+	      .tooltips(true)
+	      .showValues(false)
+		  .color(['blue', 'black'])
+		  .staggerLabels(true);
+
+
+		  chart.yAxis
+				.axisLabel(' Uninsured People (Millions)' )
+				.tickFormat(d3.format(',f'));
+
+		  chart.xAxis
+				.tickFormat(function(d,i) { 
+					
+					if (d%4==0) {
+						return d;
+					}
+					else {
+						return "";
+					}
+				});
+
+
+
+	  d3.select('#chart1 svg')
+	      .datum(historicalBarChart)
+	    .transition().duration(500)
+	      .call(chart);
+
+
+
+
+	  nv.utils.windowResize(chart.update);
+
+	  return chart;
+	});
+
+
+
+</script>
