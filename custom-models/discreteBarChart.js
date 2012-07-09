@@ -7,9 +7,14 @@ nv.models.discreteBarChart = function() {
       staggerLabels = false,
       rotateLabels = 0,
       tooltips = true,
-      tooltip = function(key, x, y, e, graph) { 
-        return '<h3>' + y + ' % </h3>' +
-               '<p>' +  x + " ("+ e.point.title + ')</p>' 
+      tooltip = function(key, x, y, e, graph) {
+		if (key==='cost'){
+			return '<h3>$' + Math.round(e.point.value) + '</h3>' +
+	               '<p>' +  e.point.label + " ("+ e.point.title + ')</p>'
+		}
+		else if (key === 'people')
+        return '<h3>' + Math.round(e.point.value) + ' million people </h3>' +
+               '<p>' +  e.point.label + " ("+ e.point.title + ')</p>' 
       };
 
 
@@ -84,9 +89,9 @@ nv.models.discreteBarChart = function() {
         .append('rect')
 
       g.select('#x-label-clip-' + discretebar.id() + ' rect')
-          .attr('width', x.rangeBand() * (staggerLabels ? 2 : 1))
+          .attr('width', x.rangeBand() * (staggerLabels ? 3 : 1))
           .attr('height', 16)
-          .attr('x', -x.rangeBand() / (staggerLabels ? 1 : 2 ));
+          .attr('x', -x.rangeBand() / (staggerLabels ? 0.9 : 2 ));
 
 
       xAxis

@@ -39,8 +39,9 @@ svg {
 <body>
 
   <div id="chart1">
+	<h3>Health Care Costs per capita from 1960 to 2010 with Projections to 2021*</h3>
+	<p>*Adjusted for inflation</p>
     <svg></svg>
-    <p id='footnote'> * Normalized to historical average </p>
   </div>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script src="lib/novus/lib/d3.v2.js"></script>
@@ -51,61 +52,72 @@ svg {
 <script src="custom-models/discreteBar.js"></script>
 <script src="custom-models/discreteBarChart.js"></script>
 
-
 <script>
 	historicalBarChart = [ 
 	  {
-	    key: "Cumulative Return",
-	    values: [{"label":1961,"value":0.164413780999999,"color":"#273347","title":"John F. Kennedy"},
-		{"label":1962,"value":2.58309392,"color":"#273347","title":"John F. Kennedy"},
-		{"label":1963,"value":1.533445375,"color":"#273347","title":"John F. Kennedy"},
-		{"label":1964,"value":3.780554383,"color":"#273347","title":"Lyndon B. Johnson"},
-		{"label":1965,"value":1.847530676,"color":"#273347","title":"Lyndon B. Johnson"},
-		{"label":1966,"value":1.225141776,"color":"#273347","title":"Lyndon B. Johnson"},
-		{"label":1967,"value":3.850583868,"color":"#273347","title":"Lyndon B. Johnson"},
-		{"label":1968,"value":3.295313156,"color":"#273347","title":"Lyndon B. Johnson"},
-		{"label":1969,"value":2.089817245,"color":"#851907","title":"Richard Nixon"},
-		{"label":1970,"value":1.1677282,"color":"#851907","title":"Richard Nixon"},
-		{"label":1971,"value":0.912867689,"color":"#851907","title":"Richard Nixon"},
-		{"label":1972,"value":3.131778128,"color":"#851907","title":"Richard Nixon"},
-		{"label":1973,"value":-0.626236852,"color":"#851907","title":"Richard Nixon"},
-		{"label":1974,"value":-2.694192262,"color":"#851907","title":"Richard Nixon"},
-		{"label":1975,"value":-0.731821826,"color":"#851907","title":"Gerald Ford"},
-		{"label":1976,"value":3.311777074,"color":"#851907","title":"Gerald Ford"},
-		{"label":1977,"value":1.684571809,"color":"#273347","title":"Jimmy Carter"},
-		{"label":1978,"value":-0.683781436,"color":"#273347","title":"Jimmy Carter"},
-		{"label":1979,"value":-3.400872479,"color":"#273347","title":"Jimmy Carter"},
-		{"label":1980,"value":-3.565549353,"color":"#273347","title":"Jimmy Carter"},
-		{"label":1981,"value":-0.079699585,"color":"#851907","title":"Ronald Reagan"},
-		{"label":1982,"value":0.924717291,"color":"#851907","title":"Ronald Reagan"},
-		{"label":1983,"value":1.667388622,"color":"#851907","title":"Ronald Reagan"},
-		{"label":1984,"value":0.591585669,"color":"#851907","title":"Ronald Reagan"},
-		{"label":1985,"value":0.4337954,"color":"#851907","title":"Ronald Reagan"},
-		{"label":1986,"value":-0.071619525,"color":"#851907","title":"Ronald Reagan"},
-		{"label":1987,"value":-0.05535848,"color":"#851907","title":"Ronald Reagan"},
-		{"label":1988,"value":2.26972412,"color":"#851907","title":"Ronald Reagan"},
-		{"label":1989,"value":0.99805314,"color":"#851907","title":"George H. W. Bush"},
-		{"label":1990,"value":0.838942364999999,"color":"#851907","title":"George H. W. Bush"},
-		{"label":1991,"value":-0.693128552,"color":"#851907","title":"George H. W. Bush"},
-		{"label":1992,"value":-0.149012623,"color":"#851907","title":"George H. W. Bush"},
-		{"label":1993,"value":-1.225660382,"color":"#273347","title":"Bill Clinton"},
-		{"label":1994,"value":-2.374492236,"color":"#273347","title":"Bill Clinton"},
-		{"label":1995,"value":-2.519913902,"color":"#273347","title":"Bill Clinton"},
-		{"label":1996,"value":-3.000713935,"color":"#273347","title":"Bill Clinton"},
-		{"label":1997,"value":-1.941463115,"color":"#273347","title":"Bill Clinton"},
-		{"label":1998,"value":-1.145962282,"color":"#273347","title":"Bill Clinton"},
-		{"label":1999,"value":-1.025038831,"color":"#273347","title":"Bill Clinton"},
-		{"label":2000,"value":-1.681320936,"color":"#273347","title":"Bill Clinton"},
-		{"label":2001,"value":0.30723489,"color":"#851907","title":"George W. Bush"},
-		{"label":2002,"value":2.616727349,"color":"#851907","title":"George W. Bush"},
-		{"label":2003,"value":0.864598863,"color":"#851907","title":"George W. Bush"},
-		{"label":2004,"value":-0.767323018,"color":"#851907","title":"George W. Bush"},
-		{"label":2005,"value":-1.896785908,"color":"#851907","title":"George W. Bush"},
-		{"label":2006,"value":-1.950198354,"color":"#851907","title":"George W. Bush"},
-		{"label":2007,"value":-1.912034204,"color":"#851907","title":"George W. Bush"},
-		{"label":2008,"value":-4.269129133,"color":"#851907","title":"George W. Bush"},
-		{"label":2009,"value":-0.883689363,"color":"#273347","title":"Barack Obama"},
-		{"label":2010,"value":-2.746386234,"color":"#273347","title":"Barack Obama"}]
+	    key: "cost",
+	    values: [{"label":1960,"value":1080.408479,"color":"#ff594c","title":"Dwight D. Eisenhower"},
+		{"label":1961,"value":1127.640777,"color":"#20D0F0","title":"John F. Kennedy"},
+		{"label":1962,"value":1204.211957,"color":"#20D0F0","title":"John F. Kennedy"},
+		{"label":1963,"value":1273.342622,"color":"#20D0F0","title":"John F. Kennedy"},
+		{"label":1964,"value":1375.055296,"color":"#20D0F0","title":"Lyndon B. Johnson"},
+		{"label":1965,"value":1458.312479,"color":"#20D0F0","title":"Lyndon B. Johnson"},
+		{"label":1966,"value":1537.534363,"color":"#20D0F0","title":"Lyndon B. Johnson"},
+		{"label":1967,"value":1661.426999,"color":"#20D0F0","title":"Lyndon B. Johnson"},
+		{"label":1968,"value":1786.077335,"color":"#20D0F0","title":"Lyndon B. Johnson"},
+		{"label":1969,"value":1898.548605,"color":"#ff594c","title":"Richard Nixon"},
+		{"label":1970,"value":2000.596008,"color":"#ff594c","title":"Richard Nixon"},
+		{"label":1971,"value":2103.029752,"color":"#ff594c","title":"Richard Nixon"},
+		{"label":1972,"value":2257.372615,"color":"#ff594c","title":"Richard Nixon"},
+		{"label":1973,"value":2338.210411,"color":"#ff594c","title":"Richard Nixon"},
+		{"label":1974,"value":2373.589906,"color":"#ff594c","title":"Richard Nixon"},
+		{"label":1975,"value":2456.083354,"color":"#ff594c","title":"Gerald Ford"},
+		{"label":1976,"value":2640.757999,"color":"#ff594c","title":"Gerald Ford"},
+		{"label":1977,"value":2796.347908,"color":"#20D0F0","title":"Jimmy Carter"},
+		{"label":1978,"value":2894.877569,"color":"#20D0F0","title":"Jimmy Carter"},
+		{"label":1979,"value":2918.222475,"color":"#20D0F0","title":"Jimmy Carter"},
+		{"label":1980,"value":2936.950002,"color":"#20D0F0","title":"Jimmy Carter"},
+		{"label":1981,"value":3058.175376,"color":"#ff594c","title":"Ronald Reagan"},
+		{"label":1982,"value":3215.121272,"color":"#ff594c","title":"Ronald Reagan"},
+		{"label":1983,"value":3403.999432,"color":"#ff594c","title":"Ronald Reagan"},
+		{"label":1984,"value":3567.353257,"color":"#ff594c","title":"Ronald Reagan"},
+		{"label":1985,"value":3732.917299,"color":"#ff594c","title":"Ronald Reagan"},
+		{"label":1986,"value":3887.298595,"color":"#ff594c","title":"Ronald Reagan"},
+		{"label":1987,"value":4048.696713,"color":"#ff594c","title":"Ronald Reagan"},
+		{"label":1988,"value":4310.931519,"color":"#ff594c","title":"Ronald Reagan"},
+		{"label":1989,"value":4535.330455,"color":"#ff594c","title":"George H. W. Bush"},
+		{"label":1990,"value":4764.193935,"color":"#ff594c","title":"George H. W. Bush"},
+		{"label":1991,"value":4931.615576,"color":"#ff594c","title":"George H. W. Bush"},
+		{"label":1992,"value":5131.754396,"color":"#ff594c","title":"George H. W. Bush"},
+		{"label":1993,"value":5284.764494,"color":"#20D0F0","title":"Bill Clinton"},
+		{"label":1994,"value":5381.623733,"color":"#20D0F0","title":"Bill Clinton"},
+		{"label":1995,"value":5472.432163,"color":"#20D0F0","title":"Bill Clinton"},
+		{"label":1996,"value":5538.46142,"color":"#20D0F0","title":"Bill Clinton"},
+		{"label":1997,"value":5663.953571,"color":"#20D0F0","title":"Bill Clinton"},
+		{"label":1998,"value":5837.34596,"color":"#20D0F0","title":"Bill Clinton"},
+		{"label":1999,"value":6023.105184,"color":"#20D0F0","title":"Bill Clinton"},
+		{"label":2000,"value":6175.247178,"color":"#20D0F0","title":"Bill Clinton"},
+		{"label":2001,"value":6454.030476,"color":"#ff594c","title":"George W. Bush"},
+		{"label":2002,"value":6894.454872,"color":"#ff594c","title":"George W. Bush"},
+		{"label":2003,"value":7244.134214,"color":"#ff594c","title":"George W. Bush"},
+		{"label":2004,"value":7493.330305,"color":"#ff594c","title":"George W. Bush"},
+		{"label":2005,"value":7666.464283,"color":"#ff594c","title":"George W. Bush"},
+		{"label":2006,"value":7839.503689,"color":"#ff594c","title":"George W. Bush"},
+		{"label":2007,"value":8019.440639,"color":"#ff594c","title":"George W. Bush"},
+		{"label":2008,"value":8014.481781,"color":"#ff594c","title":"George W. Bush"},
+		{"label":2009,"value":8280.851442,"color":"#20D0F0","title":"Barack Obama"},
+		{"label":2010,"value":8401.827017,"color":"#20D0F0","title":"Barack Obama"},
+		{"label":2011,"value":8660.5,"color":"grey","title":"Projection"},
+		{"label":2012,"value":8952.8,"color":"grey","title":"Projection"},
+		{"label":2013,"value":9214.2,"color":"grey","title":"Projection"},
+		{"label":2014,"value":9807.5,"color":"grey","title":"Projection"},
+		{"label":2015,"value":10272,"color":"grey","title":"Projection"},
+		{"label":2016,"value":10817.6,"color":"grey","title":"Projection"},
+		{"label":2017,"value":11360.2,"color":"grey","title":"Projection"},
+		{"label":2018,"value":11955,"color":"grey","title":"Projection"},
+		{"label":2019,"value":12618.3,"color":"grey","title":"Projection"},
+		{"label":2020,"value":13345.6,"color":"grey","title":"Projection"},
+		{"label":2021,"value":14102.6,"color":"grey","title":"Projection"}]
 	  }
 	];
 
@@ -117,15 +129,18 @@ svg {
 	      .showValues(false)
 		  .color(['red','blue'])
 		  .staggerLabels(true);
-		  
+
 
 		  chart.yAxis
-				.axisLabel(' Health Total Cost (% Change) * ' )
+				.axisLabel(' Cost (Hundreds USD per capita )' )
+				.tickFormat(function(d,i) { 
+					return '$'+ Math.round(d/100);
+				});
 
 		  chart.xAxis
-				.tickFormat(function(d) { 
-					years = [1961, 1964, 1969, 1975, 1977, 1981, 1989, 1993, 2001, 2009];
-					if (years.indexOf(d)>0) {
+				.tickFormat(function(d,i) { 
+					
+					if (i%4==0) {
 						return d;
 					}
 					else {
@@ -140,16 +155,14 @@ svg {
 	    .transition().duration(500)
 	      .call(chart);
 
-	   
+
 
 
 	  nv.utils.windowResize(chart.update);
 
 	  return chart;
 	});
-	
-	
-	
+
+
+
 </script>
-
-

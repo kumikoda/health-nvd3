@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Bootstrap, from Twitter</title>
+    <title>Health Care Reform and Spending</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -11,12 +11,37 @@
     <!-- Le styles -->
     <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
+    body {
+	        padding-top: 60px;
+	        padding-bottom: 40px;
+	    }
 
-}
+		.banner {
+		    width: 100%;
+			height: 300px;
+			margin: 20px;
+
+		}
+
+		.header {
+			margin-bottom: 10px;
+		}
+
+		.blocks {
+			height: 260px;
+			background-repeat: no-repeat;
+		}
+
+		.blocks:hover {
+			opacity: .5;
+			cursor: pointer;
+		}
+
+		hr.soften {
+			margin-top: 60px;
+			margin-bottom:60px;
+		}
+	  
     </style>
     <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -43,12 +68,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Project name</a>
+          <a class="brand" href="#">USA Health Care Reform and Spending</a>
           <div class="nav-collapse">
-            <ul class="nav">
-              <li class="active"><a href="#">History</a></li>
-              <li><a href="#about">Now</a></li>
-              <li><a href="#contact">Future</a></li>
+            <ul class="nav" id='topmenu'>
+              <li class="active" tag='home'><a href="#">Home</a></li>
+              <li tag ='past'><a href="#past">Past</a></li>
+              <li tag='present'><a href="#present">Present</a></li>
+			  <li tag='future'><a href="#future">Future</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -56,31 +82,96 @@
     </div>
 
     <div class="container">
+		<section id="intro">
+					<div class='row header'>
+						<div class="span12 header">
+						<img src="img/banner.png"> </img>
+						</div>
+					</div>
 
-      
-	 
-	  <div class='row'>
-      	<div class="span12">
-        	<h1>The History of our nation's Healthcare</h1>
-        	<iframe src='http://embed.verite.co/timeline/?source=0AoLyEk2dinbRdDNjU204amc2MDlVQ2NWc0NER2hvQmc&font=SansitaOne-Kameron&maptype=toner&lang=en&width=900&height=650' width='100%' height='650' frameborder='0'></iframe>
-	  	</div>
-	  </div>
-	 	
-	  <div class='row'>
-      	<div class="span12">
-        	<h1>The Future of Healthcare Costs</h1>
-        	<iframe src='president.html' width='100%' height='550' style='border:none;' scrolling='no' ></iframe>
-	  	</div>
-	  </div>
-	
+					<div class='row header'>
+						<div onclick="location.href='#past';" shortcut='past' class="span4 blocks nav1 shortcut">
+							<img src="img/past.png"> </img>
+						</div>
+
+
+						<div onclick="location.href='#present';" shortcut='present' class="span4 blocks nav2 shortcut">
+							<img src="img/present.png"> </img>
+						</div>
+
+						<div onclick="location.href='#future';" shortcut = 'future' class="span4 blocks nav3 shortcut">
+							<img src="img/future.png"> </img>
+						</div>
+
+					</div>
+				</section>
+		<hr id="past" class="soften">
+		
+		<section>
+			<div class='row'>
+			<div class="span12">
+				<h1>Historical Health Care Milestones</h1>
+				<iframe src='http://embed.verite.co/timeline/?source=0AoLyEk2dinbRdDNjU204amc2MDlVQ2NWc0NER2hvQmc&font=SansitaOne-Kameron&maptype=toner&lang=en&width=900&height=650' width='100%' height='650' frameborder='0'></iframe>
+			</div>
+			</div>
+		</section>
+		
+		<hr id="present" class="soften">
+		
+		<section> 
+					
+			<div class='row'>
+				<div class="span12">
+				<h1 style="padding-bottom: 40px;"> Patient Protection and Affordable Care Act </h1>
+				<blockquote><p>The Patient Protection and Affordable Care Act (PPACA), informally referred to as Obamacare, is a United States federal statute signed into law by President Barack Obama on March 23, 2010 after nearly a year's worth of overall consideration by both chambers of Congress. The law (along with the Health Care and Education Reconciliation Act) is the principal health care reform legislation of the 111th United States Congress.</p><small>Wikipedia</small></blockquote></br>
+				</div>
+			</div>
+		
+					<div class='row'>
+							<h3 style="padding-left: 440px; padding-bottom: 10px"> The Debate </h3>
+						<div class="span6 comparison democrat">
+							<img src="img/democrat.png"> </img>
+						</div>
+
+						<div class="span6 comparison republican">
+							<img src="img/republican.png"> </img>
+
+						</div>
+					</div>
+					
+					
+				</section>
+		
+		<hr id="future" class="soften">
+
+		
+		<section> 
+			<div class='row'>
+			<div class="span12">
+				<h1>The Dream of Universal Health Care</h1>
+				<blockquote><p>"The time has come for universal health care in America," Obama said at a conference of Families USA, a health care advocacy group. "I am absolutely determined that by the end of the first term of the next president, we should have universal health care in this country."</p><small>President Obama</small></blockquote></br>
+				<iframe src='uninsured.html' width='100%' height='550' style='border:none;' scrolling='no' ></iframe>
+			</div>
+			</div>
+		</section>
+		
+		<section> 
+			<div class='row'>
+			<div class="span12">
+				<h1>Soaring Health Care Costs?</h1>
+				<blockquote><p>[Chief Actuary Richard] Foster was asked by Rep. Tom McClintock, R-Calif., for a simple true or false response on two of the main assertions made by supporters of the law: that it will bring down unsustainable medical costs and will let people keep their current health insurance if they like it.
+				On the costs issue, "I would say false, more so than true," Foster responded.
+				As for people getting to keep their coverage, "not true in all cases."</p><small>Associated Press</small></blockquote></br>
+				<iframe src='president.html' width='100%' height='600' style='border:none;' scrolling='no' ></iframe>
+			</div>
+			</div>
+		</section>
 	
       <hr>
 	  <div class='row'>
-		<div class='span12'>
-      		<footer>
-        		<p>&copy; Company 2012</p>
-      		</footer>
-        </div>
+      	<footer>
+        	<p>&copy; Company 2012</p>
+      	</footer>
       <div class='row'>
 
     </div> <!-- /container -->
@@ -95,8 +186,22 @@
 	<script src="lib/novus/src/models/axis.js"></script>
 	<script src="custom-models/discreteBar.js"></script>
 	<script src="custom-models/discreteBarChart.js"></script>
+	<script> 
+	(function($) {
+		$('ul#topmenu li').on('click', function(){
+			$('ul#topmenu li').removeClass('active');
+			$(this).addClass("active");
+		});
+		
+		$('div.shortcut').on('click', function(){
+			$('ul#topmenu li').removeClass('active');
+			$('ul#topmenu li[tag='+$(this).attr('shortcut')+']').addClass("active");
+			
+		});
 	
-
+	})(jQuery);
+	</script>
+	
 	
 
   </body>
